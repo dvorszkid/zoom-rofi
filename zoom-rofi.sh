@@ -3,6 +3,9 @@
 cd $(dirname $(realpath $0))
 
 LINE_NR=`cat ./config | cut -d ' ' -f 2- | rofi -dmenu -i -format d`
+if [ -z $LINE_NR ]; then
+    exit
+fi
 ZOOM_URL=`sed "${LINE_NR}q;d" ./config | cut -d ' ' -f 1`
 echo "Zoom URL: " $ZOOM_URL
 
